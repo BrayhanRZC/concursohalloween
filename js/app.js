@@ -40,7 +40,8 @@ submitBtn.addEventListener('click', function(e) {
 
     mostrarPopup(); // Muestra el popup de carga
 
-    fetch('https://hook.us1.make.com/cxndb4giflcolhx6uovzqqe3ttoqv3ds', { // Cambia esto a tu URL de webhook
+    // Cambia la URL al proxy de CORS y luego a tu webhook
+    fetch('https://cors-anywhere.herokuapp.com/https://hook.us1.make.com/cxndb4giflcolhx6uovzqqe3ttoqv3ds', {
         method: 'POST',
         body: formData
     })
