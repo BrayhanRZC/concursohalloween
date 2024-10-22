@@ -27,7 +27,6 @@ form.addEventListener('click', function(e) {
 
 
 function Enviar() {
-    console.log(container);
     let container = document.getElementById('form-register');
     if (pageIsValidContent(container)) {
         let myHeaders = new Headers();
