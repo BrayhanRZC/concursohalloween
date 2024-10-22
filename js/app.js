@@ -1,3 +1,4 @@
+// Lógica para el formulario con pasos
 let form = document.querySelector('.form-register');
 let progressOptions = document.querySelectorAll('.progressbar__option');
 
@@ -25,32 +26,15 @@ form.addEventListener('click', function(e) {
     }
 });
 
-
-function pageIsValidContent(container) {
-    // Asegúrate de que el contenedor no sea nulo
-    if (!container) {
-        console.error('Contenedor no encontrado');
-        return false;
-    }
-
-    // Validación simple: verifica que todos los campos obligatorios estén llenos
-    const inputs = container.querySelectorAll('input[required], select[required]');
-    for (const input of inputs) {
-        if (!input.value.trim()) {
-            alert(`Por favor complete el campo: ${input.name}`);
-            return false;
-        }
-    }
-    return true;
-}
-     
-
+// Función para enviar el formulario a la API
 function Enviar() {
     let container = document.getElementById('form-register');
     if (pageIsValidContent(container)) {
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("groupId", "70");
+        
+        // Crear el JSON con la información del formulario
         let formulario = JSON.stringify({
             "Email": document.getElementById("email").value,
             "Name": document.getElementById("nombre").value,
@@ -61,7 +45,7 @@ function Enviar() {
                     "Name": "NombreUsuario",
                     "Value": document.getElementById("nombre").value
                 },
-{
+                {
                     "Id": 20,
                     "Name": "PreguntaDulce",
                     "Value": document.getElementById("pregunta1").value
@@ -84,7 +68,7 @@ function Enviar() {
                 {
                     "Id": 8,
                     "Name": "aceptaContacto",
-                    "Value":'Si'
+                    "Value": 'Si'
                 },
                 {
                     "Id": 30,
@@ -99,17 +83,41 @@ function Enviar() {
             ]
         });
 
-        let requestOptions = { method: 'POST', headers: myHeaders, body: formulario, redirect: 'follow' };
+        // Configuración de la petición
+        let requestOptions = { 
+            method: 'POST', 
+            headers: myHeaders, 
+            body: formulario, 
+            redirect: 'follow' 
+        };
+
+        // Realizar el envío del formulario a la API
         fetch("/API/Settings/Mailup/SendCampaing", requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);
-                location.href = "https://www.lorenzano.co/halloween-gracias-concurso";
+                
+                // Redirigir a la nueva URL de Contegral después del envío
+                location.href = "https://www.contegral.co/";
             })
             .catch(error => {
                 console.log('error', error);
+                // Si hay un error, redirige a la página de error
                 location.href = "https://www.lorenzano.co/error-404";
             });
     }
+}
 
+// Función de validación básica (debes adaptarla a tu lógica de validación)
+function pageIsValidContent(container) {
+    // Validar si los campos requeridos están completos
+    let nombre = document.getElementById('nombre').value;
+    let email = document.getElementById('email').value;
+    
+    if (nombre && email) {
+        return true;
+    } else {
+        alert("Por favor completa todos los campos.");
+        return false;
+    }
 }
