@@ -25,24 +25,6 @@ form.addEventListener('click', function(e) {
     }
 });
 
-function pageIsValidContent(container) {
-    // Asegúrate de que el contenedor no sea nulo
-    if (!container) {
-        console.error('Contenedor no encontrado');
-        return false;
-    }
-
-    // Validación simple: verifica que todos los campos obligatorios estén llenos
-    const inputs = container.querySelectorAll('input[required], select[required]');
-    for (const input of inputs) {
-        if (!input.value.trim()) {
-            alert(`Por favor complete el campo: ${input.name}`);
-            return false;
-        }
-    }
-    return true;
-}
-
 
 function Enviar() {
     console.log(container);
