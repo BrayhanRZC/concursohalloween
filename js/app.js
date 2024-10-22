@@ -44,7 +44,7 @@ function pageIsValidContent(container) {
 }
 
 function Enviar() {
-    let container = document.getElementById('form-suscripcion-halloween');
+    let container = document.getElementById('form-register');
     if (pageIsValidContent(container)) {
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
