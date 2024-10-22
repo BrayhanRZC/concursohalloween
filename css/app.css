@@ -28,6 +28,9 @@
     background: #FEF4D0;
     color: #003332;
     font-size: 12px;
+    width: 100%;
+    height: 30px;
+    padding: 10px;
 }
 
 #email {
@@ -35,6 +38,9 @@
     background: #FEF4D0;
     color: #003332;
     font-size: 12px;
+    width: 100%;
+    height: 30px;
+    padding: 10px;
 }
 
 /* Formulario */
