@@ -48,7 +48,7 @@ function Enviar() {
     if (pageIsValidContent(container)) {
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("groupId", "66");
+        myHeaders.append("groupId", "70");
         let formulario = JSON.stringify({
             "Email": document.getElementById("email").value,
             "Name": document.getElementById("nombre").value,
