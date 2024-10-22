@@ -24,3 +24,90 @@ form.addEventListener('click', function(e) {
         jumpStep.classList.remove('inactive');
     }
 });
+
+function pageIsValidContent(container) {
+    // Asegúrate de que el contenedor no sea nulo
+    if (!container) {
+        console.error('Contenedor no encontrado');
+        return false;
+    }
+
+    // Validación simple: verifica que todos los campos obligatorios estén llenos
+    const inputs = container.querySelectorAll('input[required], select[required]');
+    for (const input of inputs) {
+        if (!input.value.trim()) {
+            alert(`Por favor complete el campo: ${input.name}`);
+            return false;
+        }
+    }
+    return true;
+}
+
+function Enviar() {
+    let container = document.getElementById('form-suscripcion-halloween');
+    if (pageIsValidContent(container)) {
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("groupId", "66");
+        let formulario = JSON.stringify({
+            "Email": document.getElementById("email").value,
+            "Name": document.getElementById("nombre").value,
+            "MobilePrefix": "57",
+            "Fields": [
+                {
+                    "Id": 1,
+                    "Name": "NombreUsuario",
+                    "Value": document.getElementById("nombre").value
+                },
+{
+                    "Id": 1,
+                    "Name": "PreguntaDulce",
+                    "Value": document.getElementById("nombre").value
+                },
+                {
+                    "Id": 1,
+                    "Name": "TipoLinea",
+                    "Value": document.getElementById("nombre").value
+                },
+                {
+                    "Id": 1,
+                    "Name": "FraseLorenzano",
+                    "Value": document.getElementById("nombre").value
+                },
+                {
+                    "Id": 7,
+                    "Name": "aceptaTerminos",
+                    "Value": Si'
+                },
+                {
+                    "Id": 8,
+                    "Name": "aceptaContacto",
+                    "Value":'Si'
+                },
+                {
+                    "Id": 30,
+                    "Name": "Campaña",
+                    "Value": 'Concurso Halloween'
+                },
+                {
+                    "Id": 29,
+                    "Name": "Marca",
+                    "Value": 'Lorenzano'
+                }
+            ]
+        });
+
+        let requestOptions = { method: 'POST', headers: myHeaders, body: formulario, redirect: 'follow' };
+        fetch("/API/Settings/Mailup/SendCampaing", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+                location.href = "https://www.lorenzano.co/halloween-gracias";
+            })
+            .catch(error => {
+                console.log('error', error);
+                location.href = "https://www.lorenzano.co/error-404";
+            });
+    }
+
+}
