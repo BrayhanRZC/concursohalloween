@@ -8,14 +8,18 @@
     --color-bg-1: #008080;
     --color-bg-2: #FEF9E7;
     --color-btn: #2196F3;
-    --color-header-step: orange;
-    --color-shadow: #222;
+    --color-header-step: #00ffbc;
+    --color-shadow: #fff4d0;
     --color-border-input: #ddd;
 }
 
 .titulo_pregunta {
     font-family: Arial, Helvetica, sans-serif;
     color: #00ffbc;
+}
+
+.form-check {
+    padding: 5px;
 }
 
 .form-check-label {
