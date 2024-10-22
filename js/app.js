@@ -102,7 +102,7 @@ function Enviar() {
             .then(response => response.text())
             .then(result => {
                 console.log(result);
-                location.href = "https://www.lorenzano.co/halloween-gracias";
+                location.href = "https://www.lorenzano.co/halloween-gracias-concurso";
             })
             .catch(error => {
                 console.log('error', error);
