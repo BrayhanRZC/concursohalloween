@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formulario de registro con progress bar</title>
+    <link rel="stylesheet" href="/Users/usuario/Downloads/formulario-de-registro-multipaso-con-progressbar-master/css/app.css">
+</head>
+<body>
+    <div class="root">
+        <form action="" class="form-register">
+            <div class="form-register__header">
+                <ul class="progressbar">
+                    <li class="progressbar__option active">paso 1</li>
+                    <li class="progressbar__option">paso 2</li>
+                    <li class="progressbar__option">paso 3</li>
+                    <li class="progressbar__option">paso 4</li>
+                </ul>
+            </div>
+            <div class="form-register__body">
+                <div class="step active" id="step-1">
+                    <div class="step__header">
+                        <h2 class="step__title">Información de cuenta<small>(Paso 1)</small></h2>
+                    </div>
+                    <div class="step__body">
+                        <div class="form-group paso paso-1">
+                            <label for="paso1" class="titulo_pregunta">1. ¿Por qué en Halloween se regalan dulces? </label><br>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paso1" id="paso1A" value="A">
+                                <label class="form-check-label" for="paso1A">A. Para premiar el disfraz más creativo de la noche.</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paso1" id="paso1B" value="B">
+                                <label class="form-check-label" for="paso1B">B. Se daban a los espíritus como regalo para que se sintieran
+                                  bienvenidos en la tierra.</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paso1" id="paso1C" value="C">
+                                <label class="form-check-label" for="paso1C">C. Es una tradición Colombiana para compartir en el barrio.</label>
+                            </div>
+                            </div>
+                    </div>
+                    <div class="step__footer">
+                        <button type="button" class="step__button step__button--next" data-to_step="2" data-step="1">Siguiente</button>
+                    </div>
+                </div>
+                <div class="step" id="step-2">
+                    <div class="step__header">
+                        <h2 class="step__title">Información de personal<small>(Paso 2)</small></h2>
+                    </div>
+                    <div class="step__body">
+                        <div class="form-group paso paso-2">
+                            <label for="paso2" class="titulo_pregunta">2. ¿Cuál es la Línea Maestro de Lorenzano?</label><br>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paso2" id="paso2A" value="A">
+                                <label class="form-check-label" for="paso2A">A. La línea premium, con sabores 100% naturales, sin nitritos ni nitratatos adicionados y empaque 100% reciclable.</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paso2" id="paso2B" value="B">
+                                <label class="form-check-label" for="paso2B">B. La línea únicamente de salchichas.</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paso2" id="paso2C" value="C">
+                                <label class="form-check-label" for="paso2C">C. Todas las anteriores.</label>
+                            </div>
+  
+                            </div>
+                    </div>
+                    <div class="step__footer">
+                        <button type="button" class="step__button step__button--back" data-to_step="1" data-step="2">Regresar</button>
+                        <button type="button" class="step__button step__button--next" data-to_step="3" data-step="2">Siguiente</button>
+                    </div>
+                </div>
+                <div class="step" id="step-3">
+                    <div class="step__header">
+                        <h2 class="step__title">Información de personal<small>(Paso 2)</small></h2>
+                    </div>
+                    <div class="step__body">
+                        <div class="form-group paso paso-3 ">
+                            <label for="paso3" class="titulo_pregunta">3. ¿Cuál es la frase representativa de Lorenzano? </label><br>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paso3" id="paso3A" value="A">
+                                <label class="form-check-label" for="paso3A">A. Sabor exquisito para cada receta.</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paso3" id="paso3B" value="B">
+                                <label class="form-check-label" for="paso3B">B. Diferente por naturaleza.</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paso3" id="paso3C" value="C">
+                                <label class="form-check-label" for="paso3C">C.  Diferente y delicioso para tus recetas.</label>
+                            </div>
+                          
+                            </div>
+                    </div>
+                    <div class="step__footer">
+                        <button type="button" class="step__button step__button--back" data-to_step="2" data-step="3">Regresar</button>
+                        <button type="button" class="step__button step__button--next" data-to_step="4" data-step="3">Siguiente</button>
+                    </div>
+                </div>
+                <div class="step" id="step-4">
+                    <div class="step__header">
+                        <h2 class="step__title">Información X<small>(Paso 3)</small></h2>
+                    </div>
+                    <div class="step__body">
+                        <div class="campo">
+                            <input id="nombre" type="nombre" placeholder="Nombre" 
+                            name="nombre" class="border" onkeypress="return SoloLetras(event);"
+                            ax-required=true ax-required-text="El nombre es obligatorio" 
+                            ax-required-position="bottom">
+                        </div>
+                        
+                        <div class="campo">
+                            <input id="email" type="email" placeholder=" &#xf0e0; ejemplo@gmail.com" name="email" 
+                            ax-required=true class="border"
+                            style="font-family: FontAwesome, Arial; font-style: normal"
+                            ax-required-text="El email es obligatorio" 
+                            ax-required-position="bottom">
+                            <!-- onkeypress="return SoloNumeros(event);"  -->
+                        </div>
+                    </div>
+                    <div class="step__footer">
+                        <button type="button" class="step__button step__button--back" data-to_step="3" data-step="4">Regresar</button>
+                        <button type="submit" class="step__button">Registrarse</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="/Users/usuario/Downloads/formulario-de-registro-multipaso-con-progressbar-master/js/app.js"></script>
+</body>
+</html>
