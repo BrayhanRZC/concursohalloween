@@ -25,18 +25,13 @@ form.addEventListener('click', function(e) {
     }
 });
 
-function pageIsValidContent(container) {
-    // Aquí puedes implementar la validación de contenido del formulario
-    // Por ejemplo, asegurarte de que los campos no estén vacíos
-    return true; // Cambia esto según tu lógica de validación
-}
-
 function Enviar() {
     let container = document.getElementById('form-register');
     if (pageIsValidContent(container)) {
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("groupId", "70");
+
         let formulario = JSON.stringify({
             "Email": document.getElementById("email").value,
             "Name": document.getElementById("nombre").value,
@@ -50,17 +45,17 @@ function Enviar() {
                 {
                     "Id": 20,
                     "Name": "PreguntaDulce",
-                    "Value": document.querySelector('input[name="paso1"]:checked') ? document.querySelector('input[name="paso1"]:checked').value : null
+                    "Value": document.querySelector('input[name="pregunta1"]:checked').value
                 },
                 {
                     "Id": 31,
                     "Name": "TipoLinea",
-                    "Value": document.querySelector('input[name="paso2"]:checked') ? document.querySelector('input[name="paso2"]:checked').value : null
+                    "Value": document.querySelector('input[name="pregunta2"]:checked').value
                 },
                 {
                     "Id": 38,
                     "Name": "FraseLorenzano",
-                    "Value": document.querySelector('input[name="paso3"]:checked') ? document.querySelector('input[name="paso3"]:checked').value : null
+                    "Value": document.querySelector('input[name="pregunta3"]:checked').value
                 },
                 {
                     "Id": 7,
@@ -85,12 +80,18 @@ function Enviar() {
             ]
         });
 
-        let requestOptions = { method: 'POST', headers: myHeaders, body: formulario, redirect: 'follow' };
-        fetch("/API/Settings/Mailup/SendCampaing", requestOptions)
+        let requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: formulario,
+            redirect: 'follow'
+        };
+
+        fetch("https://hook.us2.make.com/m8ebk2g5wq9q6jvszwj3kshqomwdm38r", requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);
-                location.href = "https://www.contegral.co/";
+                location.href = "https://www.lorenzano.co/halloween-gracias-concurso";
             })
             .catch(error => {
                 console.log('error', error);
