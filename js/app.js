@@ -60,17 +60,17 @@ function Enviar() {
                     "Value": document.getElementById("nombre").value
                 },
 {
-                    "Id": 1,
+                    "Id": 20,
                     "Name": "PreguntaDulce",
                     "Value": document.getElementById("nombre").value
                 },
                 {
-                    "Id": 1,
+                    "Id": 31,
                     "Name": "TipoLinea",
                     "Value": document.getElementById("nombre").value
                 },
                 {
-                    "Id": 1,
+                    "Id": 38,
                     "Name": "FraseLorenzano",
                     "Value": document.getElementById("nombre").value
                 },
