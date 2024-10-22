@@ -77,7 +77,7 @@ function Enviar() {
                 {
                     "Id": 7,
                     "Name": "aceptaTerminos",
-                    "Value": Si'
+                    "Value": 'Si'
                 },
                 {
                     "Id": 8,
