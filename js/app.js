@@ -28,49 +28,49 @@ form.addEventListener('click', function(e) {
 
 // Enviar la información al webhook
 function Enviar() {
-    let email = document.getElementById("email").value;
-    let nombre = document.getElementById("nombre").value;
-    let pregunta1 = document.querySelector('input[name="paso1"]:checked').value;
-    let pregunta2 = document.querySelector('input[name="paso2"]:checked').value;
-    let pregunta3 = document.querySelector('input[name="paso3"]:checked').value;
+    let formData = new FormData(form); // Usa FormData para manejar todos los datos del formulario
+    let fechaHoraActual = new Date();
+    formData.append('fecha', fechaHoraActual.toLocaleDateString());
+    formData.append('hora', fechaHoraActual.toLocaleTimeString());
 
-    // Verifica que los campos no estén vacíos
-    if (nombre && email && pregunta1 && pregunta2 && pregunta3) {
-        let myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+    // Mostrar el popup con el spinner y el overlay
+    mostrarPopup();
 
-        // Crear el JSON con la información
-        let formulario = JSON.stringify({
-            "Email": email,
-            "Name": nombre,
-            "Fields": [
-                { "Id": 1, "Name": "NombreUsuario", "Value": nombre },
-                { "Id": 2, "Name": "Pregunta1", "Value": pregunta1 },
-                { "Id": 3, "Name": "Pregunta2", "Value": pregunta2 },
-                { "Id": 4, "Name": "Pregunta3", "Value": pregunta3 }
-            ]
-        });
-
-        let requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: formulario,
-            redirect: 'follow'
-        };
-
-        // Envía los datos al webhook
-        fetch("https://hook.us2.make.com/m8ebk2g5wq9q6jvszwj3kshqomwdm38r", requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(result);
-                alert("¡Registro completado exitosamente!");
-            })
-            .catch(error => {
-                console.log('error', error);
-                alert("Hubo un error. Inténtalo de nuevo.");
-            });
-    } else {
-        alert("Por favor, completa todos los campos y selecciona una opción en cada pregunta.");
-    }
+    // Envía los datos al webhook
+    fetch("https://hook.us2.make.com/m8ebk2g5wq9q6jvszwj3kshqomwdm38r", {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('Envío exitoso');
+            window.location.href = 'https://www.lorenzano.co/halloween-gracias-concurso'; // Redirigir en caso de éxito
+        } else {
+            console.log('No enviado');
+            mostrarErrorPopup(); // Muestra popup de error
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mostrarErrorPopup(); // Muestra popup de error
+    });
 }
 
+// Funciones para mostrar el popup
+function mostrarPopup() {
+    document.querySelector('.overlay').style.display = 'block';
+    document.querySelector('.spinner-popup').style.display = 'block';
+    // Ocultar el popup y el overlay después de 6 segundos
+    setTimeout(function() {
+        document.querySelector('.overlay').style.display = 'none';
+        document.querySelector('.spinner-popup').style.display = 'none';
+    }, 6000);
+}
+
+function mostrarErrorPopup() {
+    const errorPopup = document.querySelector('.error-popup');
+    errorPopup.style.display = 'block';
+    setTimeout(function() {
+        errorPopup.style.display = 'none';
+    }, 2000);
+}
