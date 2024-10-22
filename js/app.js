@@ -97,8 +97,8 @@ function Enviar() {
             .then(result => {
                 console.log(result);
                 
-                // Redirigir a la nueva URL de Contegral después del envío
-                location.href = "https://www.contegral.co/";
+                // Redirigir a la nueva URL de lorenzano después del envío
+                location.href = "https://www.lorenzano.co/halloween-gracias-concurso";
             })
             .catch(error => {
                 console.log('error', error);
