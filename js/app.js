@@ -43,7 +43,9 @@ function pageIsValidContent(container) {
     return true;
 }
 
+
 function Enviar() {
+    console.log(container);
     let container = document.getElementById('form-register');
     if (pageIsValidContent(container)) {
         let myHeaders = new Headers();
