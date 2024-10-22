@@ -1,4 +1,3 @@
-// Lógica para el formulario con pasos
 let form = document.querySelector('.form-register');
 let progressOptions = document.querySelectorAll('.progressbar__option');
 
@@ -26,15 +25,18 @@ form.addEventListener('click', function(e) {
     }
 });
 
-// Función para enviar el formulario a la API
+function pageIsValidContent(container) {
+    // Aquí puedes implementar la validación de contenido del formulario
+    // Por ejemplo, asegurarte de que los campos no estén vacíos
+    return true; // Cambia esto según tu lógica de validación
+}
+
 function Enviar() {
     let container = document.getElementById('form-register');
     if (pageIsValidContent(container)) {
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("groupId", "70");
-        
-        // Crear el JSON con la información del formulario
         let formulario = JSON.stringify({
             "Email": document.getElementById("email").value,
             "Name": document.getElementById("nombre").value,
@@ -48,17 +50,17 @@ function Enviar() {
                 {
                     "Id": 20,
                     "Name": "PreguntaDulce",
-                    "Value": document.getElementById("pregunta1").value
+                    "Value": document.querySelector('input[name="paso1"]:checked') ? document.querySelector('input[name="paso1"]:checked').value : null
                 },
                 {
                     "Id": 31,
                     "Name": "TipoLinea",
-                    "Value": document.getElementById("pregunta2").value
+                    "Value": document.querySelector('input[name="paso2"]:checked') ? document.querySelector('input[name="paso2"]:checked').value : null
                 },
                 {
                     "Id": 38,
                     "Name": "FraseLorenzano",
-                    "Value": document.getElementById("pregunta3").value
+                    "Value": document.querySelector('input[name="paso3"]:checked') ? document.querySelector('input[name="paso3"]:checked').value : null
                 },
                 {
                     "Id": 7,
@@ -83,41 +85,16 @@ function Enviar() {
             ]
         });
 
-        // Configuración de la petición
-        let requestOptions = { 
-            method: 'POST', 
-            headers: myHeaders, 
-            body: formulario, 
-            redirect: 'follow' 
-        };
-
-        // Realizar el envío del formulario a la API
+        let requestOptions = { method: 'POST', headers: myHeaders, body: formulario, redirect: 'follow' };
         fetch("/API/Settings/Mailup/SendCampaing", requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);
-                
-                // Redirigir a la nueva URL de lorenzano después del envío
-                location.href = "https://www.lorenzano.co/halloween-gracias-concurso";
+                location.href = "https://www.contegral.co/";
             })
             .catch(error => {
                 console.log('error', error);
-                // Si hay un error, redirige a la página de error
                 location.href = "https://www.lorenzano.co/error-404";
             });
-    }
-}
-
-// Función de validación básica (debes adaptarla a tu lógica de validación)
-function pageIsValidContent(container) {
-    // Validar si los campos requeridos están completos
-    let nombre = document.getElementById('nombre').value;
-    let email = document.getElementById('email').value;
-    
-    if (nombre && email) {
-        return true;
-    } else {
-        alert("Por favor completa todos los campos.");
-        return false;
     }
 }
