@@ -38,7 +38,12 @@ function pageIsValidContent(container) {
     for (const input of inputs) {
         if (!input.value.trim()) {
             alert(`Por favor complete el campo: ${input.name}`);
-            
+            return false;
+        }
+    }
+    return true;
+}
+     
 
 function Enviar() {
     let container = document.getElementById('form-register');
